@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Card,CardImg,CardText,CardBody,CardTitle,Breadcrumb, BreadcrumbItem,Label,Button,Modal,ModalBody,ModalHeader} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { addComment } from '../redux/ActionCreators';
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
@@ -15,8 +16,8 @@ class Comment extends Component {
         this.handleSubmit=this.handleSubmit.bind(this)
     }
     handleSubmit(values){
-        alert("Current State: "+JSON.stringify(values));
         this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     toggleModal(){
         this.setState({
@@ -101,7 +102,7 @@ class Comment extends Component {
             );
         }
     }
-    function RenderComments({comments}){
+    function RenderComments({comments,addComment,dishId}){
         if(comments!=null){
             const com=comments.map((comment)=>{return(
                 <div key={comment.id}>
@@ -122,6 +123,7 @@ class Comment extends Component {
             <div >
                 <h4>Comments</h4>
                 {com}
+                <Comment dishId={dishId} addComment={addComment} />
             </div>
         );
         }
@@ -153,8 +155,9 @@ class Comment extends Component {
                     <div className="col-12 col-md-5 m-1">
                        
                 
-                <RenderComments comments={props.comments}/> 
-                <Comment/>
+                <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id} /> 
                     </div>
             </div>
             </div>
