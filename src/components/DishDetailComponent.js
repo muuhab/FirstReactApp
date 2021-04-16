@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { addComment } from '../redux/ActionCreators';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
+
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
@@ -89,7 +91,7 @@ class Comment extends Component {
         if(dish!=null){
             return(
                 <Card>
-                    <CardImg width="100%" src={dish.image}/>
+                    <CardImg width="100%" src={baseUrl + dish.image}/>
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
