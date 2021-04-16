@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import {Card,CardImg,CardText,CardBody,CardTitle,Breadcrumb, BreadcrumbItem,Label,Button,Modal,ModalBody,ModalHeader} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
-import { addComment } from '../redux/ActionCreators';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
@@ -20,7 +19,7 @@ class Comment extends Component {
     }
     handleSubmit(values){
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     toggleModal(){
         this.setState({
@@ -105,7 +104,7 @@ class Comment extends Component {
             );
         }
     }
-    function RenderComments({comments,addComment,dishId}){
+    function RenderComments({comments,postComment,dishId}){
         if(comments!=null){
             const com=comments.map((comment)=>{return(
                 <div key={comment.id}>
@@ -126,7 +125,7 @@ class Comment extends Component {
             <div >
                 <h4>Comments</h4>
                 {com}
-                <Comment dishId={dishId} addComment={addComment} />
+                <Comment dishId={dishId} postComment={postComment} />
             </div>
         );
         }
@@ -178,7 +177,7 @@ class Comment extends Component {
                         
                     
                     <RenderComments comments={props.comments}
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id} /> 
                         </div>
                 </div>
