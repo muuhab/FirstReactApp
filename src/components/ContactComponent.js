@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Breadcrumb, BreadcrumbItem,Col,Label,Button,Row} from 'reactstrap';
-import { Control, Form, Errors,actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 import {Link} from 'react-router-dom';
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -16,8 +16,8 @@ class Contact extends Component {
     }
     
     handleSubmit(values){
-        alert(JSON.stringify(values));
-        this.props.resetFeedbackForm();
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message);
+        // this.props.resetFeedbackForm();
     }
     
     render(){

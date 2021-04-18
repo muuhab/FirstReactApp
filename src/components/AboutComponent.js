@@ -1,13 +1,17 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderLeader({leader}){
+    
     const lead=leader.map((leader) => {
         return (
+            <Fade in>
             <Media tag="li">
             <Media left middle>
-                <Media object src={leader.image}/>
+                <Media object src={baseUrl+leader.image}/>
             </Media>
             <Media body className="ml-5">
                 <Media heading>{leader.name}</Media>
@@ -15,11 +19,15 @@ function RenderLeader({leader}){
                 <p>{leader.description}</p>
             </Media>
          </Media>
+         </Fade>
+
         );
     });
     return(
         <div>
+            <Stagger in>
             {lead}
+            </Stagger>
         </div>
     );
 }
