@@ -39,18 +39,18 @@ class Comment extends Component {
                     <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <div className="form-group">
                                 <Label htmlFor="rating">Rating</Label>
-                                    <Control.Select model=".rating" name="rating" id="rating"
+                                    <Control.select model=".rating" name="rating" id="rating"
                                         className="form-control" defaultValue="1" >
                                         <option >1</option>
                                         <option>2</option>
                                         <option>3</option>
                                         <option>4</option>
                                         <option>5</option>
-                                    </Control.Select>
+                                    </Control.select>
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="firstname">Your Name</Label>
-                                    <Control.Text model=".author" id="firstname" name="firstname"
+                                    <Control.text model=".author" id="firstname" name="firstname"
                                         placeholder="Your Name"
                                         className="form-control"
                                         validators={{
@@ -69,7 +69,7 @@ class Comment extends Component {
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="message">Comment</Label>
-                                    <Control.Textarea model=".comment" id="message" name="message"
+                                    <Control.textarea model=".comment" id="message" name="message"
                                         divs="6"
                                         className="form-control" />
                             </div>
